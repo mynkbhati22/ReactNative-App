@@ -153,42 +153,6 @@ export default function BottomSiderBar() {
               }}
             ></Image>
           </TouchableOpacity>
-
-          <Text
-            style={{
-              fontSize: 30,
-              fontWeight: "bold",
-              color: "black",
-              paddingTop: 20,
-            }}
-          >
-            {currentTab}
-          </Text>
-
-          <Image
-            source={photo}
-            style={{
-              width: "100%",
-              height: 300,
-              borderRadius: 15,
-              marginTop: 25,
-            }}
-          ></Image>
-
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-              paddingTop: 15,
-              paddingBottom: 5,
-            }}
-          >
-            Jenna Ezarik
-          </Text>
-
-          <Text style={{}}>
-            Techie, YouTuber, PS Lover, Apple Sheep's Sister
-          </Text>
         </Animated.View>
       </Animated.View>
     </SafeAreaView>
@@ -246,7 +210,7 @@ const TabButton = (currentTab, setCurrentTab, title, image) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#5359D1",
+    backgroundColor: "red",
     alignItems: "flex-start",
     justifyContent: "flex-start",
   },
