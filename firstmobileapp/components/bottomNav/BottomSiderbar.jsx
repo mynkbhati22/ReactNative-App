@@ -18,9 +18,17 @@ import logout from "../../asset/logout.png";
 // Menu
 import menu from "../../asset/menu.png";
 import close from "../../asset/close.png";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // Photo
 import photo from "../../asset/photo.jpg";
+import About from "../jobdetails/about/About";
+import ScreenHeaderBtn from "../Header/ScreenHeaderBtn";
+
+const homeName = "Introduction";
+const detailsName = "BIFUGFF";
+
+const Tab = createBottomTabNavigator();
 
 export default function BottomSiderBar() {
   const [currentTab, setCurrentTab] = useState("Home");
@@ -35,127 +43,134 @@ export default function BottomSiderBar() {
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{ justifyContent: "flex-start", padding: 15 }}>
-        <Image
-          source={profile}
-          style={{
-            width: 60,
-            height: 60,
-            borderRadius: 10,
-            marginTop: 8,
-          }}
-        ></Image>
+    <>
+      <SafeAreaView style={styles.container}>
+        <View style={{ justifyContent: "flex-start", padding: 15 }}>
+          <Image
+            source={profile}
+            style={{
+              width: 60,
+              height: 60,
+              borderRadius: 10,
+              marginTop: 8,
+            }}
+          ></Image>
 
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "bold",
-            color: "white",
-            marginTop: 20,
-          }}
-        >
-          Jenna Ezarik
-        </Text>
-
-        <TouchableOpacity>
           <Text
             style={{
-              marginTop: 6,
+              fontSize: 20,
+              fontWeight: "bold",
               color: "white",
+              marginTop: 20,
             }}
           >
-            View Profile
+            Jenna Ezarik
           </Text>
-        </TouchableOpacity>
 
-        <View style={{ flexGrow: 1, marginTop: 50 }}>
-          {
-            // Tab Bar Buttons....
-          }
+          <TouchableOpacity>
+            <Text
+              style={{
+                marginTop: 6,
+                color: "white",
+              }}
+            >
+              View Profile
+            </Text>
+          </TouchableOpacity>
 
-          {TabButton(currentTab, setCurrentTab, "Home", home)}
-          {TabButton(currentTab, setCurrentTab, "Search", search)}
-          {TabButton(currentTab, setCurrentTab, "Notifications", notifications)}
-          {TabButton(currentTab, setCurrentTab, "Settings", settings)}
+          <View style={{ flexGrow: 1, marginTop: 50 }}>
+            {
+              // Tab Bar Buttons....
+            }
+
+            {TabButton(currentTab, setCurrentTab, "Home", home)}
+            {TabButton(currentTab, setCurrentTab, "Search", search)}
+            {TabButton(
+              currentTab,
+              setCurrentTab,
+              "Notifications",
+              notifications
+            )}
+            {TabButton(currentTab, setCurrentTab, "Settings", settings)}
+          </View>
+
+          <View>{TabButton(currentTab, setCurrentTab, "LogOut", logout)}</View>
         </View>
 
-        <View>{TabButton(currentTab, setCurrentTab, "LogOut", logout)}</View>
-      </View>
-
-      {
-        // Over lay View...
-      }
-
-      <Animated.View
-        style={{
-          flexGrow: 1,
-          backgroundColor: "white",
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          paddingHorizontal: 15,
-          paddingVertical: 20,
-          borderRadius: showMenu ? 15 : 0,
-          // Transforming View...
-          transform: [{ scale: scaleValue }, { translateX: offsetValue }],
-        }}
-      >
         {
-          // Menu Button...
+          // Over lay View...
         }
 
         <Animated.View
           style={{
-            transform: [
-              {
-                translateY: closeButtonOffset,
-              },
-            ],
+            flexGrow: 1,
+            backgroundColor: "white",
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            paddingHorizontal: 15,
+            paddingVertical: 20,
+            borderRadius: showMenu ? 15 : 0,
+            // Transforming View...
+            transform: [{ scale: scaleValue }, { translateX: offsetValue }],
           }}
         >
-          <TouchableOpacity
-            onPress={() => {
-              // Do Actions Here....
-              // Scaling the view...
-              Animated.timing(scaleValue, {
-                toValue: showMenu ? 1 : 0.88,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
+          {
+            // Menu Button...
+          }
 
-              Animated.timing(offsetValue, {
-                // YOur Random Value...
-                toValue: showMenu ? 0 : 230,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
-
-              Animated.timing(closeButtonOffset, {
-                // YOur Random Value...
-                toValue: !showMenu ? -30 : 0,
-                duration: 300,
-                useNativeDriver: true,
-              }).start();
-
-              setShowMenu(!showMenu);
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  translateY: closeButtonOffset,
+                },
+              ],
             }}
           >
-            <Image
-              source={showMenu ? close : menu}
-              style={{
-                width: 20,
-                height: 20,
-                tintColor: "black",
-                marginTop: 40,
+            <TouchableOpacity
+              onPress={() => {
+                // Do Actions Here....
+                // Scaling the view...
+                Animated.timing(scaleValue, {
+                  toValue: showMenu ? 1 : 0.88,
+                  duration: 300,
+                  useNativeDriver: true,
+                }).start();
+
+                Animated.timing(offsetValue, {
+                  // YOur Random Value...
+                  toValue: showMenu ? 0 : 230,
+                  duration: 300,
+                  useNativeDriver: true,
+                }).start();
+
+                Animated.timing(closeButtonOffset, {
+                  // YOur Random Value...
+                  toValue: !showMenu ? -30 : 0,
+                  duration: 300,
+                  useNativeDriver: true,
+                }).start();
+
+                setShowMenu(!showMenu);
               }}
-            ></Image>
-          </TouchableOpacity>
+            >
+              <Image
+                source={showMenu ? close : menu}
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: "black",
+                  marginTop: 40,
+                }}
+              ></Image>
+            </TouchableOpacity>
+          </Animated.View>
         </Animated.View>
-      </Animated.View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 }
 

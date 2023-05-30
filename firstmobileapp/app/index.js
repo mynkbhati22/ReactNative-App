@@ -6,12 +6,14 @@ import Welcome from "../components/welcome/Welcome";
 import Popular from "../components/popularjobs/Popular";
 import Nearbyjobs from "../components/nearbyjobs/Nearbyjobs";
 import BottomSiderBar from "../components/bottomNav/BottomSiderbar";
+import Tabs from "../components/Tabs";
 
 const Home = () => {
   const router = useRouter();
   return (
     <>
-      <BottomSiderBar />
+      <Tabs />
+      {/* <BottomSiderBar /> */}
       {/* <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
         Use the `Screen` component to configure the layout.
         <Stack.Screen
